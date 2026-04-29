@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Randall Clay Semilla — Executive Assistant & CRM Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #080C14;
+    --surface: #0D1421;
+    --surface2: #111827;
+    --teal: #2DD4BF;
+    --teal-dim: #1a8a7e;
+    --orange: #FB923C;
+    --white: #F0F6FF;
+    --muted: #64748B;
+    --border: #1E293B;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid rgba(45,212,191,0.1);
+    backdrop-filter: blur(20px);
+    background: rgba(8,12,20,0.85);
+  }
+
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--teal); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(45,212,191,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,212,191,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,212,191,0.08) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+
+  .hero-glow-2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(251,146,60,0.06) 0%, transparent 70%);
+    bottom: 0; left: 10%;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 30px; height: 1px;
+    background: var(--teal);
+  }
+
+  h1 {
+    font-family: var(--font-head);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  h1 .accent { color: var(--teal); }
+  h1 .accent-2 { color: var(--orange); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn-primary {
+    padding: 0.9rem 2rem;
+    background: var(--teal);
+    color: var(--bg);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(45,212,191,0.3);
+  }
+
+  .btn-outline {
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: var(--white);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .stat-num {
+    font-family: var(--font-head);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--teal);
+    line-height: 1;
+  }
+
+  .stat-num span { color: var(--orange); }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section {
+    padding: 6rem 4rem;
+    position: relative;
+  }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 20px; height: 1px;
+    background: var(--teal);
+  }
+
+  h2 {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    color: var(--muted);
+    max-width: 540px;
+    margin-bottom: 3.5rem;
+    font-size: 1rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--surface); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: #94A3B8;
+    margin-bottom: 1.2rem;
+    font-size: 0.98rem;
+  }
+
+  .about-text strong { color: var(--white); font-weight: 500; }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .highlight-card {
+    padding: 1.4rem 1.6rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal);
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .highlight-card:hover { transform: translateX(4px); border-left-color: var(--orange); }
+
+  .highlight-card .icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .highlight-card h4 {
+    font-family: var(--font-head);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+    color: var(--white);
+  }
+
+  .highlight-card p { font-size: 0.82rem; color: var(--muted); margin: 0; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg); }
+
+  .timeline {
+    position: relative;
+    max-width: 860px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--teal), transparent);
+  }
+
+  .timeline-item {
+    padding-left: 2.5rem;
+    margin-bottom: 3.5rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+
+  .timeline-dot {
+    position: absolute;
+    left: -5px; top: 8px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(45,212,191,0.2);
+  }
+
+  .timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .timeline-company {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .timeline-date {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .timeline-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.6rem;
+    background: rgba(251,146,60,0.15);
+    color: var(--orange);
+    border: 1px solid rgba(251,146,60,0.3);
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .timeline-title {
+    font-family: var(--font-head);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--white);
+  }
+
+  .timeline-desc {
+    color: #94A3B8;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(45,212,191,0.08);
+    color: var(--teal);
+    border: 1px solid rgba(45,212,191,0.2);
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  .tag.orange {
+    background: rgba(251,146,60,0.08);
+    color: var(--orange);
+    border-color: rgba(251,146,60,0.2);
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-group {
+    padding: 1.8rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .skill-group::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .skill-group:hover { border-color: rgba(45,212,191,0.3); }
+  .skill-group:hover::before { transform: scaleX(1); }
+
+  .skill-group-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .skill-group-title {
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1rem;
+  }
+
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-pill {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.65rem;
+    background: var(--surface);
+    color: #CBD5E1;
+    border: 1px solid var(--border);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .skill-group:hover .skill-pill {
+    background: rgba(45,212,191,0.06);
+    color: var(--white);
+  }
+
+  /* ── PORTFOLIO PROJECTS ── */
+  #projects { background: var(--bg); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(45,212,191,0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(45,212,191,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .project-card:hover::after { opacity: 1; }
+
+  .project-num {
+    font-family: var(--font-head);
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(45,212,191,0.08);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-category {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-title {
+    font-family: var(--font-head);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.65;
+  }
+
+  .project-results {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .project-result-item {
+    font-size: 0.78rem;
+    color: #94A3B8;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .project-result-item::before {
+    content: '→';
+    color: var(--teal);
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    margin-top: 0.15rem;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--surface);
+    text-align: center;
+  }
+
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.4rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--bg);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--teal-dim); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">RC<span>S</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for remote work · EST / PST / AEST / GMT</div>
+    <h1>
+      Executive <span class="accent">Assistant</span><br/>
+      &amp; CRM <span class="accent-2">Specialist</span>
+    </h1>
+    <p class="hero-sub">
+      I build the systems behind high-performing teams — GoHighLevel automation, sales pipeline architecture, and operations that scale.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Let's Connect</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">4<span>+</span></div>
+        <div class="stat-label">Years Remote Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">6<span>+</span></div>
+        <div class="stat-label">Industries Served</div>
+      </div>
+      <div>
+        <div class="stat-num">8</div>
+        <div class="stat-label">VAs Managed</div>
+      </div>
+      <div>
+        <div class="stat-num"><span>#</span>1</div>
+        <div class="stat-label">Allstate Agency Supported</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">About Me</div>
+  <h2>Systems Thinker.<br/>Operations Driver.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm <strong>Randall Clay Semilla</strong>, a Filipino Executive Assistant and CRM Automation Specialist with 4+ years of full-time remote experience. I've supported B2B companies, insurance agencies, real estate investors, e-commerce brands, and everything in between.
+      </p>
+      <p>
+        My specialty is turning chaos into clean, <strong>trackable, repeatable systems</strong> — whether that's a GoHighLevel pipeline, a sales reporting dashboard, an automated email sequence, or a full team operations workflow.
+      </p>
+      <p>
+        I've been promoted from EA to <strong>Team Manager</strong>, overseeing up to 8 virtual assistants across 6+ concurrent client accounts. I don't just execute — I document, improve, and scale.
+      </p>
+      <p>
+        Currently supporting the Sales Performance Coach of a <strong>nationally ranked #1 Allstate agency</strong> in the United States (2024 &amp; 2025).
+      </p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-card">
+        <span class="icon">⚙️</span>
+        <h4>CRM Architecture</h4>
+        <p>GoHighLevel pipelines, workflows, automations, Zapier integrations, and Shopify/Zoom/Freshdesk connections built from scratch.</p>
+      </div>
+      <div class="highlight-card">
+        <span class="icon">📊</span>
+        <h4>Sales & Pipeline Reporting</h4>
+        <p>KPI dashboards, quote-to-close tracking, conversion analysis, and structured performance reports for sales leadership.</p>
+      </div>
+      <div class="highlight-card">
+        <span class="icon">🧠</span>
+        <h4>Operations & Team Management</h4>
+        <p>SOPs in Notion, weekly client reports, onboarding coordination, and team oversight across multi-industry accounts.</p>
+      </div>
+      <div class="highlight-card">
+        <span class="icon">📣</span>
+        <h4>Email & Digital Marketing</h4>
+        <p>Lead nurturing sequences, SMS campaigns, B2B outreach, event promotions, and social media content across GHL, Mailchimp, and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag">Work History</div>
+  <h2>Where I've<br/>Made an Impact</h2>
+  <p class="section-intro">4+ years across insurance, B2B sales, real estate, events, cybersecurity, and e-commerce — all remote, all systems-driven.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-company">Gaudio Insurance Group — Allstate</span>
+        <span class="timeline-date">2025 – Present</span>
+        <span class="timeline-badge">Current Role</span>
+      </div>
+      <div class="timeline-title">Executive Assistant — Sales Performance & Reporting</div>
+      <div class="timeline-desc">
+        Supporting the Sales Performance Coach of the #1 ranked Allstate agency in the United States (2024 &amp; 2025). Responsible for full pipeline visibility, KPI tracking, and performance reporting across multiple licensed agents.
+      </div>
+      <div class="timeline-tags">
+        <span class="tag">Sales Pipeline Management</span>
+        <span class="tag">KPI Reporting</span>
+        <span class="tag">CRM Accuracy</span>
+        <span class="tag">Conversion Analysis</span>
+        <span class="tag orange">Insurance</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-company">ResolutionX (Formerly Rane Media Group)</span>
+        <span class="timeline-date">2023 – 2025</span>
+        <span class="timeline-badge">Promoted to Team Manager</span>
+      </div>
+      <div class="timeline-title">Executive Assistant → Team Manager</div>
+      <div class="timeline-desc">
+        Started as EA handling CRM, automation, and executive support across multiple B2B clients. Promoted to Team Manager overseeing 8 VAs across 6+ concurrent accounts spanning commercial insurance, B2B sales, events, cybersecurity, and e-commerce.
+      </div>
+      <div class="timeline-tags">
+        <span class="tag">GoHighLevel</span>
+        <span class="tag">Zapier</span>
+        <span class="tag">Freshdesk</span>
+        <span class="tag">Workflow Automation</span>
+        <span class="tag">Team Leadership</span>
+        <span class="tag">Notion SOPs</span>
+        <span class="tag orange">Multi-Industry</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-company">Gypsy Endeavors LLC</span>
+        <span class="timeline-date">2022 – 2023</span>
+      </div>
+      <div class="timeline-title">Lead Generation & CRM Specialist</div>
+      <div class="timeline-desc">
+        Generated real estate acquisition leads across rotating US state territories using Zillow and Realtor.com. Managed CRM data entry, drip campaign enrollment, and DocuSign processing for a property investment acquisition pipeline.
+      </div>
+      <div class="timeline-tags">
+        <span class="tag">Lead Generation</span>
+        <span class="tag">CRM Data Entry</span>
+        <span class="tag">Drip Campaigns</span>
+        <span class="tag">DocuSign</span>
+        <span class="tag orange">Real Estate</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">
+        <span class="timeline-company">Concentrix — Comcast / Xfinity Account</span>
+        <span class="timeline-date">2021 – 2023</span>
+      </div>
+      <div class="timeline-title">Advisor II — Technical, Billing & Sales Support</div>
+      <div class="timeline-desc">
+        Delivered high-volume inbound support for Xfinity customers — resolving technical issues, managing billing disputes, and meeting monthly sales KPIs for service upgrades within a fast-paced contact center environment.
+      </div>
+      <div class="timeline-tags">
+        <span class="tag">Technical Support</span>
+        <span class="tag">Billing Resolution</span>
+        <span class="tag">Sales KPIs</span>
+        <span class="tag orange">Telecommunications</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">Tech Stack</div>
+  <h2>Tools I Work<br/>With Daily</h2>
+  <p class="section-intro">A broad toolkit across CRM, automation, marketing, operations, and creative — all used in real client work.</p>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <span class="skill-group-icon">🤖</span>
+      <div class="skill-group-title">CRM & Automation</div>
+      <div class="skill-pills">
+        <span class="skill-pill">GoHighLevel</span>
+        <span class="skill-pill">HubSpot</span>
+        <span class="skill-pill">Zapier</span>
+        <span class="skill-pill">Mailchimp</span>
+        <span class="skill-pill">eChempax</span>
+        <span class="skill-pill">Datacor</span>
+        <span class="skill-pill">Freshdesk</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <span class="skill-group-icon">📈</span>
+      <div class="skill-group-title">Sales & Revenue Ops</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Pipeline Management</span>
+        <span class="skill-pill">KPI Reporting</span>
+        <span class="skill-pill">Opportunity Tracking</span>
+        <span class="skill-pill">Quote Processing</span>
+        <span class="skill-pill">Conversion Analysis</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <span class="skill-group-icon">📧</span>
+      <div class="skill-group-title">Marketing & Funnels</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Email Campaigns</span>
+        <span class="skill-pill">SMS Automation</span>
+        <span class="skill-pill">Landing Pages</span>
+        <span class="skill-pill">Lead Nurturing</span>
+        <span class="skill-pill">FB & Google Ads</span>
+        <span class="skill-pill">LinkedIn Content</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <span class="skill-group-icon">🛠️</span>
+      <div class="skill-group-title">Operations & PM</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Notion</span>
+        <span class="skill-pill">ClickUp</span>
+        <span class="skill-pill">Asana</span>
+        <span class="skill-pill">Trello</span>
+        <span class="skill-pill">QuickBooks</span>
+        <span class="skill-pill">GoodShuffle Pro</span>
+        <span class="skill-pill">CaterEase</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <span class="skill-group-icon">🌐</span>
+      <div class="skill-group-title">Web & E-Commerce</div>
+      <div class="skill-pills">
+        <span class="skill-pill">WordPress (Elementor)</span>
+        <span class="skill-pill">Shopify</span>
+        <span class="skill-pill">Squarespace</span>
+        <span class="skill-pill">Amazon</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <span class="skill-group-icon">🎨</span>
+      <div class="skill-group-title">Creative & Content</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Canva</span>
+        <span class="skill-pill">CapCut</span>
+        <span class="skill-pill">Descript</span>
+        <span class="skill-pill">Adobe Illustrator</span>
+        <span class="skill-pill">Zoom</span>
+        <span class="skill-pill">MS Teams</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO PROJECTS -->
+<section id="projects">
+  <div class="section-tag">Portfolio</div>
+  <h2>Notable Work<br/>&amp; Projects</h2>
+  <p class="section-intro">A selection of high-impact work from real client engagements across my career.</p>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-category">GoHighLevel · Insurance SaaS</div>
+      <div class="project-title">Bignition CRM Automation Suite</div>
+      <div class="project-desc">Built a full automation ecosystem for The Wedge Group's Bignition platform — a commercial insurance CRM serving 8,000+ producers nationwide.</div>
+      <div class="project-results">
+        <div class="project-result-item">FAQ Friday email workflow with embedded video delivery to all users</div>
+        <div class="project-result-item">Monday Mastermind registration & announcement system via GHL</div>
+        <div class="project-result-item">Shopify → GHL Zapier integration for automatic course access on purchase</div>
+        <div class="project-result-item">Annual virtual coaching event enrollment & access workflows</div>
+        <div class="project-result-item">Freshdesk CRM support — lead uploads, troubleshooting, user assistance</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-category">Sales Reporting · Insurance</div>
+      <div class="project-title">Agency Performance Dashboard</div>
+      <div class="project-desc">Designed and maintained structured sales reporting systems for the #1 Allstate agency in the US, giving leadership real-time visibility into agent performance.</div>
+      <div class="project-results">
+        <div class="project-result-item">Weekly & monthly reports tracking lead activity per agent</div>
+        <div class="project-result-item">Quote-to-close ratio monitoring and conversion trend analysis</div>
+        <div class="project-result-item">CRM data accuracy maintenance across all agent records</div>
+        <div class="project-result-item">Performance gap identification for targeted coaching</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-category">B2B Outreach · Chemical Distribution</div>
+      <div class="project-title">MEG LLC Sales Pipeline System</div>
+      <div class="project-desc">Built and managed a full B2B outreach and pipeline system for a Texas-based chemical distribution company targeting procurement departments.</div>
+      <div class="project-results">
+        <div class="project-result-item">Cold email templates + phone outreach to procurement managers</div>
+        <div class="project-result-item">CRM pipeline with custom stages: prospected → contacted → quoted → confirmed</div>
+        <div class="project-result-item">Sales Order, PO, Bill of Lading, and Invoice processing via eChempax/Datacor</div>
+        <div class="project-result-item">Sustained engagement over ~12-month client relationship</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="project-category">Team Operations · VA Agency</div>
+      <div class="project-title">Multi-Account Team Management</div>
+      <div class="project-desc">Promoted to Team Manager at ResolutionX, overseeing 8 VAs across 6+ concurrent client accounts spanning 5+ industries simultaneously.</div>
+      <div class="project-results">
+        <div class="project-result-item">Built and maintained SOPs for each client account in Notion</div>
+        <div class="project-result-item">Weekly & monthly performance reports for all client campaigns</div>
+        <div class="project-result-item">Led team standups and attended new client onboarding calls</div>
+        <div class="project-result-item">Cross-trained on all accounts: events, cybersecurity, e-commerce, pet boarding, ministry</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <div class="project-category">Lead Generation · Real Estate</div>
+      <div class="project-title">Property Acquisition Pipeline</div>
+      <div class="project-desc">Built and maintained an acquisition lead pipeline for Gypsy Endeavors LLC, sourcing off-market properties across rotating US state territories every week.</div>
+      <div class="project-results">
+        <div class="project-result-item">Researched qualifying properties on Zillow & Realtor.com by state territory</div>
+        <div class="project-result-item">Compiled leads into structured spreadsheets with agent contact data</div>
+        <div class="project-result-item">CRM entry + automated email/SMS drip campaign enrollment</div>
+        <div class="project-result-item">DocuSign processing for acquisition deal advancement</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">06</div>
+      <div class="project-category">Podcast & Content · Insurance Coaching</div>
+      <div class="project-title">Monday Mastermind Content System</div>
+      <div class="project-desc">End-to-end content workflow for The Wedge Group's weekly coaching podcast — from recording to distribution to follow-up campaigns.</div>
+      <div class="project-results">
+        <div class="project-result-item">Edited podcast sessions using Descript (cuts, captions, cleanup)</div>
+        <div class="project-result-item">Post-session recap emails to attendees & non-attendees via GHL</div>
+        <div class="project-result-item">Registration page + announcement workflows for upcoming sessions</div>
+        <div class="project-result-item">Topic preview broadcasts to drive producer sign-up rates</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-tag" style="justify-content:center;">Get In Touch</div>
+    <h2>Let's Work<br/>Together</h2>
+    <p class="section-intro" style="margin:1rem auto 0;text-align:center;">
+      Open to full-time remote roles, freelance contracts, and long-term client partnerships. Flexible across US, AU, and UK time zones.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:randallclaycem@gmail.com" class="contact-link">
+        ✉️ &nbsp;randallclaycem@gmail.com
+      </a>
+      <a href="tel:+639167956229" class="contact-link">
+        📱 &nbsp;+63 916 795 6229
+      </a>
+      <a href="https://linkedin.com/in/randallclaysemilla" target="_blank" class="contact-link">
+        💼 &nbsp;LinkedIn
+      </a>
+      <a href="https://www.upwork.com" target="_blank" class="contact-link">
+        🔗 &nbsp;Upwork Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Randall Clay Semilla</span>
+  <span>Executive Assistant · CRM Specialist · Remote Operations</span>
+</footer>
+
+<script>
+  // Scroll-triggered timeline animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--teal)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
