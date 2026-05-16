@@ -1311,53 +1311,71 @@
   .section-tag {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
+    gap: 0.7rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--teal);
-    font-weight: 600;
-    margin-bottom: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
     font-family: var(--font-head);
+    background: rgba(45,212,191,0.07);
+    border: 1px solid rgba(45,212,191,0.18);
+    padding: 0.35rem 0.9rem 0.35rem 0.7rem;
+    width: fit-content;
   }
 
   .section-tag::before {
     content: '';
     display: block;
-    width: 24px;
+    width: 18px;
     height: 2px;
-    background: var(--teal);
+    background: linear-gradient(90deg, var(--teal), var(--orange));
     flex-shrink: 0;
   }
 
   h2 {
     font-family: var(--font-head);
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
     font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    margin-bottom: 0.8rem;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.6rem;
     color: var(--white);
     position: relative;
   }
 
-  /* Teal underline accent on h2 */
+  /* First word teal tint via text-shadow glow */
+  h2 .highlight {
+    color: var(--white);
+    text-shadow: 0 0 40px rgba(45,212,191,0.35);
+  }
+
+  /* Animated gradient underline on h2 */
   h2::after {
     content: '';
     display: block;
-    width: 48px;
+    width: 64px;
     height: 3px;
-    background: linear-gradient(90deg, var(--teal), var(--orange));
-    margin-top: 0.6rem;
+    background: linear-gradient(90deg, var(--teal), var(--orange), var(--teal));
+    background-size: 200% auto;
+    margin-top: 0.7rem;
     border-radius: 2px;
+    animation: gradientShift 3s linear infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
   }
 
   .section-intro {
     color: var(--muted);
-    max-width: 540px;
+    max-width: 560px;
     margin-bottom: 3.5rem;
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.75;
+    margin-top: 0.5rem;
   }
 
   /* Section alternating bg */
@@ -1505,6 +1523,158 @@
     .nav-links { display: none; }
   }
 
+
+  /* ── AI SECTION ── */
+  #ai-services { background: var(--bg); position: relative; overflow: hidden; }
+
+  #ai-services::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,212,191,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ai-intro {
+    max-width: 700px;
+    margin-bottom: 3rem;
+  }
+
+  .ai-intro .big-quote {
+    font-family: var(--font-head);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--teal);
+    padding-left: 1.2rem;
+  }
+
+  .ai-intro .big-quote span { color: var(--teal); }
+  .ai-intro .big-quote em { color: var(--orange); font-style: normal; }
+
+  .ai-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 900px) {
+    .ai-cards-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 580px) {
+    .ai-cards-grid { grid-template-columns: 1fr; }
+  }
+
+  .ai-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.6rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+
+  .ai-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--orange));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+
+  .ai-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(45,212,191,0.3);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+
+  .ai-card:hover::before { transform: scaleX(1); }
+
+  .ai-card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .ai-card-title {
+    font-family: var(--font-head);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .ai-card-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .ai-card-desc strong { color: var(--teal); font-weight: 500; }
+
+  .ai-proof {
+    background: var(--surface);
+    border: 1px solid rgba(45,212,191,0.2);
+    padding: 2rem 2.4rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-proof::before {
+    content: '🤖';
+    font-size: 3rem;
+    line-height: 1;
+    opacity: 0.15;
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+  }
+
+  .ai-proof-text {
+    flex: 1;
+  }
+
+  .ai-proof-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-head);
+  }
+
+  .ai-proof-headline {
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .ai-proof-body {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .ai-proof-body strong { color: var(--white); font-weight: 500; }
+
 </style>
 </head>
 <body>
@@ -1514,6 +1684,7 @@
   <a href="#hero" class="nav-logo">RC<span>S</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#ai-services">AI Services</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Portfolio</a></li>
@@ -1531,12 +1702,16 @@
   <!-- Text: left side -->
   <div class="hero-text">
     <div class="hero-eyebrow">Available for remote work · EST / PST / AEST / GMT</div>
+    <div style="display:inline-flex; align-items:center; gap:0.5rem; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--orange); font-weight:600; margin-bottom:1.2rem; opacity:0; animation: fadeUp 0.8s 0.3s forwards;">
+      <span style="display:block; width:18px; height:2px; background:var(--orange);"></span>
+      🤖 AI-Enhanced Operations Specialist · This portfolio was built using AI
+    </div>
     <h1>
-      Executive <span class="accent">Assistant</span><br/>
-      &amp; CRM <span class="accent-2">Specialist</span>
+      AI-Powered <span class="accent">Operations</span><br/>
+      &amp; Problem <span class="accent-2">Solver</span>
     </h1>
     <p class="hero-sub">
-      I build the systems behind high-performing teams — GoHighLevel automation, sales pipeline architecture, and operations that scale.
+      Executive Assistant. CRM Specialist. AI Integrator. I bring artificial intelligence <em>into</em> your business — automating the repetitive, solving the complex, and building systems that make you faster without adding headcount.
     </p>
     <div class="hero-cta-group">
       <a href="#projects" class="btn-primary">View My Work</a>
@@ -1569,6 +1744,95 @@
 
 </section>
 
+<!-- AI SERVICES -->
+<section id="ai-services">
+  <div class="section-tag">AI-Powered Services</div>
+  <h2>I Bring AI Into<br/>Your Business</h2>
+
+  <div class="ai-intro">
+    <div class="big-quote">
+      "Everyone is talking about AI. <span>Most business owners know they need it.</span>
+      <em>Very few know how to actually use it.</em> That's where I come in."
+    </div>
+    <p class="section-intro" style="margin-bottom:0;">
+      I don't just use AI tools — I integrate them into your workflows, automate your repetitive tasks,
+      and build systems that make your business faster, leaner, and more competitive.
+      You get the results of AI without needing to understand how it works.
+    </p>
+  </div>
+
+  <div class="ai-cards-grid">
+
+    <div class="ai-card">
+      <span class="ai-card-icon">⚡</span>
+      <div class="ai-card-title">Workflow Automation</div>
+      <div class="ai-card-desc">
+        I map your repetitive processes and automate them using AI + Zapier + Make.com.
+        Tasks that take hours get done in <strong>minutes — automatically</strong>.
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <span class="ai-card-icon">✍️</span>
+      <div class="ai-card-title">AI Content & Drafting</div>
+      <div class="ai-card-desc">
+        Emails, SOPs, reports, social captions, and customer replies — drafted with AI
+        and refined by me. <strong>Faster output, consistent quality</strong>, less of your time.
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <span class="ai-card-icon">🔗</span>
+      <div class="ai-card-title">CRM + AI Integration</div>
+      <div class="ai-card-desc">
+        I connect your GoHighLevel or HubSpot CRM with AI workflows so your pipeline
+        practically <strong>manages itself</strong> — follow-ups, tagging, sequences, and more.
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <span class="ai-card-icon">📊</span>
+      <div class="ai-card-title">AI-Assisted Reporting</div>
+      <div class="ai-card-desc">
+        I use AI to analyze your data, spot trends, and generate <strong>clear, actionable reports</strong>
+        so you always know what's working and what needs attention.
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <span class="ai-card-icon">🛠️</span>
+      <div class="ai-card-title">AI Tool Setup & Training</div>
+      <div class="ai-card-desc">
+        Not sure where to start with AI? I'll identify the right tools for your business,
+        set them up, and <strong>show your team how to use them</strong> effectively.
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <span class="ai-card-icon">🌐</span>
+      <div class="ai-card-title">Built With AI — Fast</div>
+      <div class="ai-card-desc">
+        This entire portfolio was <strong>designed, coded, and deployed using AI</strong> — in a
+        fraction of traditional time. I can build tools and assets for your business the same way.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ai-proof">
+    <div class="ai-proof-text">
+      <div class="ai-proof-label">🔥 Real Proof — Not Just a Buzzword</div>
+      <div class="ai-proof-headline">This portfolio website was built entirely using AI</div>
+      <div class="ai-proof-body">
+        Every line of code, every section, every design decision — built by me using AI tools
+        like Claude and ChatGPT. <strong>No developer. No agency. No months of work.</strong>
+        That's what AI-powered operations looks like in practice — and that's exactly what
+        I can bring into your business.
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="about">
   <div class="section-tag">About Me</div>
   <h2>Systems Thinker.<br/>Operations Driver.</h2>
@@ -1585,6 +1849,12 @@
       </p>
       <p>
         Currently supporting the Sales Performance Coach of a <strong>nationally ranked #1 Allstate agency</strong> in the United States (2024 &amp; 2025).
+      </p>
+      <p>
+        One thing past employers consistently say: I'm one of the <strong>rare VAs who actually solves problems</strong> — I stop, think, and apply. I use <strong>AI tools daily</strong> to work faster, build smarter, and deliver more without adding to your overhead.
+      </p>
+      <p>
+        This portfolio? <strong>Built by me, using AI</strong> — designed, coded, and deployed in a fraction of traditional time. That's what I can do for your business.
       </p>
     </div>
     <div class="about-highlights">
@@ -1607,6 +1877,16 @@
         <span class="icon">📣</span>
         <h4>Email & Digital Marketing</h4>
         <p>Lead nurturing sequences, SMS campaigns, B2B outreach, event promotions, and social media content across GHL, Mailchimp, and more.</p>
+      </div>
+      <div class="highlight-card" style="border-left-color: var(--orange);">
+        <span class="icon">🧩</span>
+        <h4>Problem Solver — Not Order Taker</h4>
+        <p>I stop, think, and apply. I identify root causes, build fixes, and prevent issues from recurring — without needing to be hand-held through every step.</p>
+      </div>
+      <div class="highlight-card" style="border-left-color: var(--orange);">
+        <span class="icon">🤖</span>
+        <h4>AI-Powered & Fast</h4>
+        <p>I leverage ChatGPT, Claude, and AI tools daily to automate tasks, draft content, and build solutions — including this entire portfolio website — faster than traditional methods.</p>
       </div>
     </div>
   </div>
@@ -1781,17 +2061,23 @@
       </div>
     </div>
 
-    <div class="skill-group">
+    <div class="skill-group" style="border-color: rgba(251,146,60,0.3);">
       <span class="skill-group-icon">🤖</span>
-      <div class="skill-group-title">AI & Automation Tools</div>
+      <div class="skill-group-title" style="color: var(--orange);">AI-Powered Productivity</div>
       <div class="skill-pills">
         <span class="skill-pill">ChatGPT</span>
         <span class="skill-pill">Claude (Anthropic)</span>
         <span class="skill-pill">Prompt Engineering</span>
-        <span class="skill-pill">AI Workflow Integration</span>
+        <span class="skill-pill">AI Workflow Automation</span>
         <span class="skill-pill">Zapier AI</span>
         <span class="skill-pill">Make.com</span>
+        <span class="skill-pill">AI Content Drafting</span>
+        <span class="skill-pill">AI-Built Web Tools</span>
       </div>
+      <p style="font-size:0.72rem; color: var(--muted); margin-top: 0.8rem; line-height: 1.5;">
+        I use AI daily to automate repetitive tasks, draft content, build tools, and speed up operations —
+        helping businesses move faster without adding headcount.
+      </p>
     </div>
   </div>
 </section>
@@ -1813,7 +2099,7 @@
       <div class="card-body">
         <div class="p-category">GoHighLevel · Automation</div>
         <div class="p-title">Weekly FAQ Email Workflow</div>
-        <div class="p-desc">Built a GHL automation that sends FAQ emails to Bignition clients every Friday, including video tutorials and answers to the most common support questions.</div>
+        <div class="p-desc">Owned client support operations and built a full GHL automation ecosystem for The Wedge Group's Bignition platform — a commercial insurance CRM serving thousands of producers. Resolved tickets independently, identified recurring pain points, and built proactive solutions.</div>
         <div class="p-results">
           <div class="p-result-item">Automated weekly email delivery to all active users</div>
           <div class="p-result-item">Educational content with embedded video tutorials</div>
