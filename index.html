@@ -887,11 +887,18 @@
   a.testimonial-platform { text-decoration: none; cursor: pointer; }
   a.testimonial-platform:hover { background: rgba(45,212,191,0.16); }
 
+  .spotlight-row {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+  }
+
+  .spotlight-text-col { flex: 1; min-width: 0; }
+  .spotlight-img-col { flex-shrink: 0; width: 300px; }
+
   .spotlight-proof {
     display: block;
     width: 100%;
-    max-width: 360px;
-    margin: 1.8rem auto 0.4rem;
     border: 1px solid var(--border);
     border-radius: 8px;
     cursor: zoom-in;
@@ -905,7 +912,12 @@
     font-size: 0.72rem;
     color: var(--muted);
     letter-spacing: 0.06em;
-    margin-top: 0.2rem;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 720px) {
+    .spotlight-row { flex-direction: column; gap: 1.8rem; }
+    .spotlight-img-col { width: 100%; max-width: 360px; margin: 0 auto; }
   }
 
   /* ── PROJECT CARDS ── */
@@ -2278,7 +2290,9 @@
       </div>
     </div>
 
-    <div class="testimonial-card">
+    <div class="testimonial-card spotlight-card">
+     <div class="spotlight-row">
+      <div class="spotlight-text-col">
       <p class="testimonial-text">
         "Most VA companies place someone, give you a high five, and walk away — and a few weeks in,
         leads start slipping. Missed opportunities pile up. <strong>That's not what happened with Clay.</strong>
@@ -2298,8 +2312,12 @@
           </div>
         </div>
       </div>
+      </div>
+      <div class="spotlight-img-col">
       <img src="securevas-spotlight.png" alt="SecureEVAs &quot;Behind The Work&quot; EVA Spotlight featuring Clay" class="spotlight-proof" onclick="openLightbox('securevas-spotlight.png')"/>
       <div class="spotlight-caption">SecureEVAs “Behind The Work” spotlight — click to enlarge</div>
+      </div>
+     </div>
     </div>
 
     <div class="testimonial-highlights">
