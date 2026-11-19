@@ -315,7 +315,7 @@ section{position:relative;padding:120px 0}
 @keyframes chatA{0%,35%{display:flex;opacity:1}36%,100%{opacity:0;display:none}}
 @keyframes chatR{0%,35%{opacity:0;transform:translateY(6px);display:none}36%{display:block}40%,92%{opacity:1;transform:none;display:block}100%{opacity:0;display:block}}
 /* ───── projects ───── */
-.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.projects{display:flex;flex-direction:column;gap:28px}
 .proj{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;transform-style:preserve-3d;transition:transform .25s ease-out,border-color .3s;--x:-999px;--y:-999px;position:relative}
 .proj::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(420px circle at var(--x) var(--y),rgba(255,255,255,.07),transparent 45%)}
 .proj:hover{border-color:rgba(150,165,255,.4)}
@@ -323,7 +323,7 @@ section{position:relative;padding:120px 0}
 .proj .pic img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
 .proj:hover .pic img{transform:scale(1.05)}
 .proj .pic video{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
-.proj:hover .pic video{transform:scale(1.03)}
+.proj:hover .pic video{transform:none}
 .shot video{display:block;border-radius:calc(var(--r-lg) - 2px);width:100%;height:auto;background:#0B1026}
 .lightbox video{max-width:min(1400px,100%);max-height:88vh;border-radius:var(--r-md);box-shadow:0 40px 100px -20px #000;transform:scale(.9);transition:transform .45s var(--ease);display:none}
 .lightbox.open video{transform:none}
@@ -335,8 +335,11 @@ section{position:relative;padding:120px 0}
 .proj ul{list-style:none;margin-top:14px;display:grid;gap:7px}
 .proj li{font-size:14.5px;color:#CBD2F6;padding-left:24px;position:relative}
 .proj li::before{content:"";position:absolute;left:0;top:.45em;width:13px;height:9px;border-left:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(-45deg)}
-.proj.wide{grid-column:span 2;display:grid;grid-template-columns:1.15fr 1fr}
-.proj.wide .pic{aspect-ratio:auto}
+.proj{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.5fr);align-items:center}
+.proj .body{order:1;padding:34px 34px 36px}
+.proj .pic{order:2;margin:14px;border-radius:calc(var(--r-lg) - 6px)}
+.proj.wide{grid-column:auto}
+.proj.wide .pic{aspect-ratio:3/2}
 
 /* ───── experience timeline ───── */
 .timeline{position:relative;padding-left:44px;max-width:860px}
@@ -439,7 +442,9 @@ footer{border-top:1px solid var(--line);padding:50px 0 34px;overflow:hidden}
   .stat:nth-child(3){border-left:none}
   .stat:nth-child(n+3){border-top:1px solid var(--line)}
   .span-4,.span-2,.span-3{grid-column:span 6}
-  .proj.wide{grid-template-columns:1fr}
+  .proj,.proj.wide{grid-template-columns:1fr}
+  .proj .body{order:1;padding:24px 24px 6px}
+  .proj .pic{order:2;margin:10px}
   .reviews{grid-template-columns:1fr}
 }
 @media (max-width:640px){
@@ -709,7 +714,7 @@ footer{border-top:1px solid var(--line);padding:50px 0 34px;overflow:hidden}
     <div class="head">
       <div class="kicker rv">More work</div>
       <h2 class="h2 rv scramble">Real builds from real clients</h2>
-      <p class="lede rv">Each build, animated step by step. Click any one to watch it full size.</p>
+      <p class="lede rv">Each build plays step by step, the way it runs for the client. Click any one to watch it full size.</p>
     </div>
     <div class="projects">
       <article class="proj tilt rv">
@@ -1051,7 +1056,7 @@ footer{border-top:1px solid var(--line);padding:50px 0 34px;overflow:hidden}
   (function(){var vids=$$('video.loopvid');
     if(reduce){vids.forEach(function(v){v.removeAttribute('autoplay');v.pause()});return}
     if(!('IntersectionObserver' in window))return;
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{rootMargin:'150px'});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.dataset.seen){v.dataset.seen='1';try{v.currentTime=0}catch(_){}}var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.35});
     vids.forEach(function(v){io.observe(v)})})();
 
   /* ── lightbox ── */
