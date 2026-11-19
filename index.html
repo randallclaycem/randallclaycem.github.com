@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Clay Semilla — GoHighLevel Automation for Events, Workshops & Webinars</title>
-<meta name="description" content="I'm Clay. I build the GoHighLevel registration pages, ticketing, and follow-up automations behind events, workshops, and webinars, plus custom dashboards and AI workflows."/>
-<meta property="og:title" content="Clay Semilla — Events, workshops & webinars that run themselves"/>
-<meta property="og:description" content="Registration pages, ticketing, and follow-up automations in GoHighLevel, plus custom dashboards and AI workflows."/>
+<title>Clay Semilla — The operator who builds the system</title>
+<meta name="description" content="I'm Clay, the operator who builds the system. I turn messy operations into systems that run themselves: GoHighLevel funnels and automations, custom dashboards, and AI workflows."/>
+<meta property="og:title" content="Clay Semilla — The operator who builds the system"/>
+<meta property="og:description" content="I turn messy operations into systems that run themselves: GoHighLevel funnels and automations, custom dashboards, and AI workflows."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://randallclaycem.github.io/"/>
 <meta property="og:image" content="https://randallclaycem.github.io/og-image.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="Clay Semilla — GoHighLevel automation for events, workshops, and webinars"/>
+<meta property="og:image:alt" content="Clay Semilla — The operator who builds the system"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://randallclaycem.github.io/og-image.jpg"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
@@ -353,6 +353,7 @@ section{position:relative;padding:120px 0}
 .proj.wide .pic{aspect-ratio:3/2}
 
 
+.hero-lead{display:block;font-family:var(--display);font-weight:800;font-size:clamp(24px,2.6vw,32px);line-height:1.15;letter-spacing:-.015em;color:var(--text);margin-bottom:12px}
 /* ───── process + starter builds ───── */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:st}
 .stepc{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px 24px 28px}
@@ -550,11 +551,11 @@ footer{border-top:1px solid var(--line);padding:50px 0 34px;overflow:hidden}
   </svg>
   <div class="wrap hero-grid">
     <div>
-      <div class="status later" data-d="0"><span class="live"></span>Taking on event and GHL builds · open to remote roles</div>
-      <h1 class="hello" aria-label="Hi! I'm Clay. I automate events in GoHighLevel, build pages that fill the room, build custom dashboards, and put AI to work.">
+      <div class="status later" data-d="0"><span class="live"></span>Open to remote roles and freelance builds</div>
+      <h1 class="hello" aria-label="Hi! I'm Clay. I run remote operations, automate workflows, build custom dashboards, and put AI to work.">
         <span aria-hidden="true"><span class="typed" id="typed"></span><span class="caret"></span><span class="wave" id="wave">👋</span></span>
       </h1>
-      <p class="hero-sub later">I build the <strong>GoHighLevel registration pages, ticketing, and follow-up automations</strong> behind events, workshops, and webinars, so every signup is confirmed, reminded, and followed up without anyone chasing it. I also build custom dashboards and AI workflows, including a performance web app for the <strong>#1 Allstate agency in the US</strong>, built without being asked.</p>
+      <p class="hero-sub later"><span class="hero-lead">The operator who builds the system.</span>I turn messy operations into systems that run themselves: GoHighLevel funnels and automations, custom dashboards, and AI workflows. I've managed <strong>8 VAs across 6+ client accounts</strong> and built a performance web app for the <strong>#1 Allstate agency in the US</strong>, without being asked.</p>
       <div class="cta-row later">
         <a href="https://calendly.com/randallclaycem/30min" class="btn btn-main magnetic js-cal">📅 Book a call</a>
         <a href="#work" class="btn btn-ghost magnetic">See my work</a>
@@ -988,7 +989,7 @@ footer{border-top:1px solid var(--line);padding:50px 0 34px;overflow:hidden}
   /* ── hero intro: typed hello, wave, words, then the rest ── */
   function intro(){
     var typed=$('#typed'),wave=$('#wave');
-    var lines=["Hi! I'm Clay","I automate your events in GHL.","I build pages that fill the room.","I build custom dashboards.","I put AI to work."];
+    var lines=["Hi! I'm Clay","I run remote ops.","I automate workflows.","I build custom dashboards.","I put AI to work."];
     var later=$$('.later');
     function showRest(){later.forEach(function(el,i){setTimeout(function(){el.classList.add('go')},i*120)})}
     if(reduce){typed.textContent=lines[0];wave.style.opacity=1;wave.style.transform='none';showRest();return}
